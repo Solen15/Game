@@ -1,6 +1,7 @@
 import pygame
 from Drawing.Rectangle import Rectangle
 from Drawing.Tower import Tower
+from Drawing.Disk import Disk
 
 WIN_WIDTH = 1280
 WIN_HEIGHT = 720
@@ -12,6 +13,16 @@ TOWERS_COUNT = 3
 DISK_COUNT = 8
 DISK_HEIGHT = 50
 
+DISK_COLORS = [
+    (244, 67, 54),
+    (156, 39, 176),
+    (63, 81, 181),
+    (3, 169, 244),
+    (0, 150, 136),
+    (139, 195, 74),
+    (255, 235, 59),
+    (255, 152, 0),
+]
 class Game:
     def __init__(self):
         self.table = None
@@ -44,7 +55,14 @@ class Game:
 
         for i in range(TOWERS_COUNT):
             self.towers[i].rect.centerx = int(WIN_WIDTH / (TOWERS_COUNT + 1)* (i + 1))
-            self.towers[i].rect.bottom = WIN_HEIGHT - TABLE_HEIGHT #5 * MIN_SIZE
+            self.towers[i].rect.bottom = self.table.rect.top
+
+        self.disks = [Disk(int(WIN_WIDTH / (TOWERS_COUNT + 1) - 30 * i), DISK_HEIGHT, DISK_COLORS[i])
+                       for i in range(DISK_COUNT)]
+
+        for i in range(DISK_COUNT):
+            self.towers[0].add_disk(self.disks[i])
+            self.disks[i].rect.midbottom = self.towers[0].rect.midbottom[0], self.towers[0].rect.midbottom[1] - i * DISK_HEIGHT
 
 
         pygame.draw.circle(self.screen, "red", self.player_pos, 40)
@@ -62,6 +80,9 @@ class Game:
         self.table.draw()
         for tower in self.towers:
             tower.draw()
+
+        for disk in self.disks:
+            disk.draw()
 
         pygame.display.flip()
 

@@ -1,6 +1,7 @@
 import pygame
 
 from Drawing.Rectangle import Rectangle
+from Drawing.Disk import Disk
 
 
 class Tower(Rectangle):
@@ -16,4 +17,8 @@ class Tower(Rectangle):
         pygame.draw.rect(ds, self.color, self.rect,
                          border_top_left_radius=outer_radius,
                          border_top_right_radius=outer_radius)
+
+
+    def add_disk(self, disk: Disk):
+        self.disks.append(disk)
 
