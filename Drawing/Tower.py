@@ -22,3 +22,6 @@ class Tower(Rectangle):
     def add_disk(self, disk: Disk):
         self.disks.append(disk)
 
+    def pop_disk(self):
+        return self.disks.pop()
+
