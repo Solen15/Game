@@ -42,6 +42,9 @@ class Game:
                     self.running = False
 
             self.draw()
+
+            #temp = self.towers[0].pop_disk()
+            #self.towers[1].add_disk(temp)
         pygame.quit()
 
     def reset(self):
@@ -60,7 +63,7 @@ class Game:
                       for i in range(DISK_COUNT)]
 
         for i in range(DISK_COUNT):
-            self.towers[0].add_disk(self.disks[i])
+            #self.towers[0].add_disk(self.disks[i])
             self.disks[i].rect.midbottom = self.towers[0].rect.midbottom[0], self.towers[0].rect.midbottom[
                                                                                  1] - i * DISK_HEIGHT
 
