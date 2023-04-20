@@ -8,11 +8,11 @@ WIN_HEIGHT = 720
 
 TABLE_WIDTH = 1000
 TABLE_HEIGHT = 30
-
+TABLE_COLOR = [107, 63, 25]
 TOWERS_COUNT = 3
+
 DISK_COUNT = 8
 DISK_HEIGHT = 50
-
 DISK_COLORS = [
     (244, 67, 54),
     (156, 39, 176),
@@ -33,6 +33,8 @@ class Game:
         self.clock = pygame.time.Clock()
         self.running = True
 
+        self.reset()
+
     def run(self):
         while self.running:
             for event in pygame.event.get():
@@ -42,14 +44,12 @@ class Game:
             self.draw()
         pygame.quit()
 
-    def draw(self):
-        self.screen.fill("purple")
-
-        self.table = Rectangle(1000, 30, [107, 63, 25])
+    def reset(self):
+        self.table = Rectangle(1000, 30, TABLE_COLOR)
         self.table.rect.centerx = int(WIN_WIDTH / 2)
         self.table.rect.centery = int(WIN_HEIGHT - TABLE_HEIGHT)
 
-        self.towers = [Tower(TABLE_HEIGHT, (DISK_COUNT + 1) * DISK_HEIGHT, [107, 63, 25])
+        self.towers = [Tower(TABLE_HEIGHT, (DISK_COUNT + 1) * DISK_HEIGHT, TABLE_COLOR)
                        for i in range(TOWERS_COUNT)]
 
         for i in range(TOWERS_COUNT):
@@ -64,7 +64,11 @@ class Game:
             self.disks[i].rect.midbottom = self.towers[0].rect.midbottom[0], self.towers[0].rect.midbottom[
                                                                                  1] - i * DISK_HEIGHT
 
+    def draw(self):
+
+        self.screen.fill("purple")
         self.table.draw()
+
         for tower in self.towers:
             tower.draw()
 
