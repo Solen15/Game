@@ -9,6 +9,7 @@ class Tower(Rectangle):
         super().__init__(width, height, color)
 
         self.disks = []
+        self.temp_disk = None
 
     def draw(self):
         ds = pygame.display.get_surface()
@@ -17,7 +18,6 @@ class Tower(Rectangle):
         pygame.draw.rect(ds, self.color, self.rect,
                          border_top_left_radius=outer_radius,
                          border_top_right_radius=outer_radius)
-
 
     def add_disk(self, disk: Disk):
         self.disks.append(disk)
@@ -28,3 +28,5 @@ class Tower(Rectangle):
     def get_midbottom(self, disk_height):
         return self.rect.midbottom[0], self.rect.midbottom[1] - disk_height * (len(self.disks) - 1)
 
+    def disk_select(self):
+        self.temp_disk = Disk[self.disks[-1].width - 3, self.disks[-1].height - 3, [200, 0, 0]] #TODO

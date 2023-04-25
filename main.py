@@ -32,6 +32,7 @@ class Game:
         self.screen = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
         self.clock = pygame.time.Clock()
         self.running = True
+        self.selected_tower = None
 
         self.reset()
 
@@ -66,6 +67,9 @@ class Game:
             self.towers[0].add_disk(disk)
             disk.rect.midbottom = self.towers[0].get_midbottom(DISK_HEIGHT)
 
+        self.selected_tower = 0
+
+        self.towers[self.selected_tower].disk_select()
 
 
     def draw(self):
@@ -75,6 +79,8 @@ class Game:
 
         for tower in self.towers:
             tower.draw()
+            if tower.temp_disk:
+                tower.temp_disk.draw()
 
         for disk in self.disks:
             disk.draw()
