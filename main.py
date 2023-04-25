@@ -64,8 +64,9 @@ class Game:
 
         for disk in self.disks:
             self.towers[0].add_disk(disk)
-            disk.rect.midbottom = self.towers[0].rect.midbottom[0], self.towers[0].rect.midbottom[
-                                                                                 1] - i * DISK_HEIGHT
+            disk.rect.midbottom = self.towers[0].get_midbottom(DISK_HEIGHT)
+
+
 
     def draw(self):
 

@@ -25,3 +25,6 @@ class Tower(Rectangle):
     def pop_disk(self):
         return self.disks.pop(0)
 
+    def get_midbottom(self, disk_height):
+        return self.rect.midbottom[0], self.rect.midbottom[1] - disk_height * (len(self.disks) - 1)
+
