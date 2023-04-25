@@ -62,9 +62,9 @@ class Game:
         self.disks = [Disk(int(WIN_WIDTH / (TOWERS_COUNT + 1) - 30 * i), DISK_HEIGHT, DISK_COLORS[i])
                       for i in range(DISK_COUNT)]
 
-        for i in range(DISK_COUNT):
-            #self.towers[0].add_disk(self.disks[i])
-            self.disks[i].rect.midbottom = self.towers[0].rect.midbottom[0], self.towers[0].rect.midbottom[
+        for disk in self.disks:
+            self.towers[0].add_disk(disk)
+            disk.rect.midbottom = self.towers[0].rect.midbottom[0], self.towers[0].rect.midbottom[
                                                                                  1] - i * DISK_HEIGHT
 
     def draw(self):
