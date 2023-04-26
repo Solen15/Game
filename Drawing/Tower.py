@@ -29,4 +29,5 @@ class Tower(Rectangle):
         return self.rect.midbottom[0], self.rect.midbottom[1] - disk_height * (len(self.disks) - 1)
 
     def disk_select(self):
-        self.temp_disk = Disk[self.disks[-1].width - 3, self.disks[-1].height - 3, [200, 0, 0]] #TODO
+        self.temp_disk = Disk(self.disks[-1].rect.width - 10, self.disks[-1].rect.height - 10, [200, 0, 0])
+        self.temp_disk.rect.midbottom = self.disks[-1].rect.midbottom[0],self.disks[-1].rect.midbottom[1] - 5

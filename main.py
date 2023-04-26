@@ -85,6 +85,11 @@ class Game:
         for disk in self.disks:
             disk.draw()
 
+        for tower in self.towers:
+            #tower.draw()
+            if tower.temp_disk:
+                tower.temp_disk.draw()
+
         pygame.display.flip()
 
 
